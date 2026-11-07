@@ -6,7 +6,7 @@ An unofficial, single-file reference tool for the Gundam Card Game. No build ste
 
 - **Meta Report:** the current top archetypes from tournament results (share of the field and event wins), the banned/restricted rules, and full 50-card decklists with an automatic legality check. Each deck shows its source and date.
 - **Card Database:** searchable cards with stats and art, filterable by color, type, and set (booster packs, starter decks, extra booster, promotional).
-- **My Collection:** card art tiles with + and - buttons, filter and sort, and a quick "add a card" search.
+- **My Collection:** card art tiles with + and - buttons, filter and sort, a quick "add a card" search, and import from a CSV or Excel file (such as an ExBurst collection export).
 - **Deck Import:** paste a decklist (IDs or names, `// Main Deck` / `// Resource Deck` headers supported). It shows card art, flags unknown cards, and checks the deck against the ban list and deck rules.
 - **Match Log:** win/loss with opponent colors, notable units, mulligan, username, and your deck. Entries can be edited, and you get win rates by opponent color and by deck.
 - **New Sets & Backup:** paste a new set's card table when a set releases, add single cards, and download or restore a backup of everything you've entered.
@@ -28,15 +28,22 @@ This build saves to your browser's `localStorage`:
 
 ## Card coverage
 
-- **Full data with effect text:** GD01, GD02, GD03, ST01-ST10, EB01, Beta, promos.
-- **Stats only (no effect text):** GD04, GD05, ST11-ST14.
-- **Pre-release:** GD06 (Stardust Trails, releases Oct 30, 2026). These cards may change.
-- **Known gaps:** ST07-016, ST08-016, and ST09-011 to ST09-016 were not in the source files. Add any missing card or set from the New Sets & Backup tab.
+- **Full data with effect text:** GD01-GD06, ST01-ST14, EB01, Beta, promos, plus EX Base, EX Resource, Resource, and Unit Token cards.
+- **Known gaps:** none identified. Add any missing card or set from the New Sets & Backup tab.
+- 78 Units with no printed effect text were checked by hand and confirmed; the 10 Unit Tokens are not yet checked.
+- Each card number appears once; alternate-art and promo printings are merged into it.
 - Cards not in the database still show art when imported by ID, and are marked "NOT IN DB".
 
 ## Rules and legality
 
 The legality checker uses the official banned/restricted list as of **Sept 25, 2026**: Anksha banned, Corsica Base limited to 2, Amuro Ray + Mikazuki Augus and Guntank + M1 Astray Shrike banned together, at most one of a group of low-cost vanilla Units, 4 copies per card number, 50-card main deck, 10-card resource deck, and 2 colors maximum. The vanilla Unit group was copied from a summary and may be incomplete. **Always confirm on [gundam-gcg.com](https://www.gundam-gcg.com) before registering a deck.**
+
+## Documentation
+
+- [docs/DEVELOPER_GUIDE.md](docs/DEVELOPER_GUIDE.md): how the app works and why, with the data model and common tasks.
+- [docs/BUILD_LOG.md](docs/BUILD_LOG.md): how it was built, the dead ends, and every bug with its cause.
+- [docs/LEARNING_PATH.md](docs/LEARNING_PATH.md): exercises and a learning order, using this project.
+- [CHANGELOG.md](CHANGELOG.md) and [SOURCES.md](SOURCES.md).
 
 ## Sources and credit
 

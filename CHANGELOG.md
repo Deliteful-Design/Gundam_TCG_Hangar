@@ -3,6 +3,13 @@
 Keep this file in the repo. Commit after every update so GitHub's history lets you go back to any earlier version.
 
 ## Latest
+- Meta refresh after GD06 (ExBurst, Aug 9 - Nov 7, 2026): new top-10 ranking and a Nov 1 Top 8 Char's Zaku II list. GD06 builds are still under 1% of the field.
+- Added 103 promotional EX Base, EX Resource, Resource cards and Deck Build Box cards; 6 of the 15 numbers missing from the collection import are now covered. R-020 to R-029 (8 cards) and T-014 are still unknown.
+- Deck Import: "Add all to my collection" is now "Add missing copies". It raises each card only up to the deck's quantity instead of adding on top, so pressing it twice no longer inflates counts.
+- Backup files are now named gundam-trading-card-game-backup-YYYY-MM-DD.json, using your local date.
+- Cleaned printing labels such as "(LR+)", "(R+)", "(SP)" and a card's own number out of about 60 card names (for example "Victory Gundam (LR+)" is now "Victory Gundam"), so name search and name-based import match correctly.
+- Refreshed Stardust Trails (GD06) from the release-day TCGCSV file: 130 numbered cards (4 changed since pre-release) plus 8 new Unit Tokens. Removed the pre-release notes.
+- Added developer documentation in `docs/`: a developer guide, a build log with every bug and its cause, and a learning path.
 - Mobile layout pass 1: tabs wrap into a 3-column grid instead of scrolling sideways, fixed the white strip from page overflow, single-column deck cards, larger tap targets, and 16px inputs so iPhones do not zoom on focus.
 - My Collection can import a CSV or Excel collection export (tested design: ExBurst columns Card No / Owned). Choose to keep the higher count, add, or replace; alternate arts count toward the main card.
 - Correction: ST07 to ST09 are smaller than 16 cards, so ST07-016, ST08-016 and ST09-011 to ST09-016 do not exist. They were wrongly listed as missing; all starter-deck cards in the source files are loaded.

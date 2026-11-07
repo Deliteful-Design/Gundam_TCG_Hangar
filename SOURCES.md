@@ -4,15 +4,15 @@ Hangar is an unofficial fan tool. It is built on other people's work, and this f
 
 ## Card data
 
-- **TCGCSV** (https://tcgcsv.com), by CptSpaceToaster ( https://github.com/CptSpaceToaster/tcgcsv ). A free daily copy of TCGplayer's catalog data. GD03, EB01, GD06 (Stardust Trails, pre-release), and ST07-ST10 stats, traits, zones, and effect text come from its Gundam (category 86) product files, which come from **TCGplayer** (https://www.tcgplayer.com).
+- **TCGCSV** (https://tcgcsv.com), by CptSpaceToaster ( https://github.com/CptSpaceToaster/tcgcsv ). A free daily copy of TCGplayer's catalog data. GD03, GD04, GD05, EB01, GD06 (Stardust Trails), ST07-ST14, and promo-card fill-ins: stats, traits, zones, and effect text come from its Gundam (category 86) product files, which come from **TCGplayer** (https://www.tcgplayer.com).
 - **apitcg/gundam-tcg-data** (https://github.com/apitcg/gundam-tcg-data). Open-source card data for GD01, GD02, ST01-ST06, Beta, and promos.
-- **Gundam Card List** (https://gundamcardlist.com). Card tables used for GD04 and GD05 stats (card data on that site is itself via TCGCSV).
-- **Gamertag Mythras** (https://gamertagmythras.com/blog/gundam-tcg/gundam-card-game-st11-st14-card-lists). Card list used for ST11-ST14 stats.
+- **Gundam Card List** (https://gundamcardlist.com). Card tables used for the first GD04 and GD05 stats, since replaced by the TCGCSV files (the site's own data is via TCGCSV).
+- **Gamertag Mythras** (https://gamertagmythras.com/blog/gundam-tcg/gundam-card-game-st11-st14-card-lists). Card list used for the first ST11-ST14 stats, since replaced by the TCGCSV files.
 - Individual cards (Victory Gundam, Banshee Norn Destroy Mode, and a few GD03/GD04 cards) were first checked against listings on retailer sites such as CoolStuffInc and Springer Hobbies.
 
 ## Meta and decklists
 
-- **ExBurst** (https://exburst.dev/gundam/tournaments/meta). Archetype ranking (200 events, 1,905 decklists, Jul 22 - Oct 20, 2026) and the Aile Strike + Strike Freedom decklist (https://exburst.dev/gundam/deck/459416), played by Syou at the Card Lab Ota Road Main Store Serial Card Challenge on Oct 15, 2026.
+- **ExBurst** (https://exburst.dev/gundam/tournaments/meta). Archetype ranking (200 events, 1,930 decklists, Aug 9 - Nov 7, 2026) and two decklists: Char's Zaku II by くろすけ (https://exburst.dev/gundam/deck/491907, Top 8 at the TCG Shop TCG 99 Newtype Challenge, Nov 1, 2026) and the Aile Strike + Strike Freedom decklist (https://exburst.dev/gundam/deck/459416), played by Syou at the Card Lab Ota Road Main Store Serial Card Challenge on Oct 15, 2026.
 
 ## Rules, ban list, and images
 
