@@ -3,7 +3,10 @@
 Keep this file in the repo. Commit after every update so GitHub's history lets you go back to any earlier version.
 
 ## Latest
-- Alternate-art counts (light version): each collection card has an ALT counter showing how many of your copies are alternate art. The ExBurst import fills it from -ALT rows, and it is included in Backup and Restore. Totals still include alternate arts, so deck checks are unchanged. Alternate arts do not have their own pictures yet.
+- Card Database now lists alternate printings (from TCGplayer's list, including promos and Store Tournament packs) right after each original card, with a cyan border and an ID like GD04-003-ALT1. A checkbox turns them off.
+- In a card's popup you can move to the previous or next card with the PREV and NEXT buttons, the left and right arrow keys, or a swipe on a phone.
+- Alternate arts are now their own picture tiles in My Collection. Importing an ExBurst file saves each -ALT number with its copy count. Each tile has arrows to pick which picture it shows (Bandai art 1 to 6, then every TCGplayer printing including promo and Store Tournament packs); your pick is saved with your backup. Base tiles show only your regular copies; deck checks still use the total. Replaces the earlier ALT counter, so re-import your ExBurst file after updating.
+- (Replaced by the picture tiles above) Alternate-art counts, light version: each collection card has an ALT counter showing how many of your copies are alternate art. The ExBurst import fills it from -ALT rows, and it is included in Backup and Restore. Totals still include alternate arts, so deck checks are unchanged. Alternate arts do not have their own pictures yet.
 - Collection import text now says it works with any tracker whose file has a card number column and a quantity column (tested only with ExBurst), and recognizes a few more column names (Card Code, Collector Number, Amount, Have, names with underscores).
 - Deck Import accepts a Duel Frontier deck link (the deck is stored inside the link and decoded in your browser).
 - Choosing a set in My Collection or the Card Database now lists cards in card-number order, starting at 001. My Collection switches its sort to Card ID for you; you can still change it.

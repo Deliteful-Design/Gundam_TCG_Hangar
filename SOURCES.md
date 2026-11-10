@@ -19,6 +19,13 @@ Hangar is an unofficial fan tool. It is built on other people's work, and this f
 - **Bandai's official Gundam Card Game site** (https://www.gundam-gcg.com). Rules, the banned/restricted list (effective Sept 25, 2026), and card images. Card images load from Bandai's site through the free image proxy images.weserv.nl.
 - The beginner primer was written from Bandai's official rulebook and play sheet.
 
+## Alternate-art pictures and deck links
+
+- **TCGplayer product images** (tcgplayer-cdn.tcgplayer.com) are used for alternate printings; the printing list comes from the TCGCSV files above.
+- **Bandai's card images** (gundam-gcg.com, loaded through images.weserv.nl) are used for the card art and for the numbered alternate pictures.
+- **Duel Frontier** (https://duelfrontier.com): deck links from its deck builder store the deck inside the link; Hangar only decodes that text in your browser and does not contact the site.
+- **ExBurst** screenshots supplied by the project owner were used to work out how its ALT numbers relate to the printed parallel numbers.
+
 ## Trademarks
 
 Gundam Card Game names, card text, and artwork are the property of SOTSU, SUNRISE, and Bandai. This project is not affiliated with, endorsed by, or sponsored by them, or by TCGplayer, TCGCSV, ExBurst, or any other site named above.
