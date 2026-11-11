@@ -737,15 +737,15 @@ function renderCards(){
   var showAlts = document.getElementById('filter-alts').checked, view = [];
   filtered.forEach(function(c){
     view.push(c);
-    if (showAlts) (ALT_ART[c.id] || []).forEach(function(x, i){ view.push({ id: c.id + '-ALT' + (i + 1), alt: true, base: c, label: x[0], pid: x[1] }); });
+    if (showAlts) (ALT_ART[c.id] || []).forEach(function(x, i){ view.push({ id: c.id + '-ALT' + (i + 1), alt: true, j: i, base: c, label: x[0], pid: x[1] }); });
   });
   modalView = view;
   document.getElementById('results-count').textContent = filtered.length + ' cards' + (showAlts ? ' + ' + (view.length - filtered.length) + ' alternate printings' : '');
   var grid = document.getElementById('card-grid');
   var slice = view.slice(0, cardLimit);
   grid.innerHTML = slice.map(function(c, vi){
-    if (c.alt) return '<div class="gcg-tile-wrap"><div class="gcg-card-tile gcg-corner-frame" data-vi="' + vi + '" style="border-color:var(--cyan);"><img loading="lazy" decoding="async" src="' + tcgImg(c.pid) + '" alt=""><div class="nm">' + String(c.base.name).replace(/</g, '&lt;') + '</div><div class="meta"><span>' + c.id + '</span><span style="color:var(--cyan)">' + String(c.label).replace(/</g, '&lt;') + '</span></div></div></div>';
-    var qty = owned[c.id] || 0;
+    if (c.alt) return '<div class="gcg-tile-wrap">' + ((altArt[c.id] && altArt[c.id].q) ? '<div class="gcg-owned-badge">x' + altArt[c.id].q + '</div>' : '') + '<div class="gcg-card-tile gcg-corner-frame" data-vi="' + vi + '" style="border-color:var(--cyan);"><img loading="lazy" decoding="async" src="' + tcgImg(c.pid) + '" alt=""><div class="nm">' + String(c.base.name).replace(/</g, '&lt;') + '</div><div class="meta"><span>' + c.id + '</span><span style="color:var(--cyan)">' + String(c.label).replace(/</g, '&lt;') + '</span></div></div></div>';
+    var qty = baseRegular(c.id);
     return '<div class="gcg-tile-wrap">' +
       (qty > 0 ? '<div class="gcg-owned-badge">x' + qty + '</div>' : '') +
       '<div class="gcg-card-tile gcg-corner-frame" data-vi="' + vi + '" data-id="' + c.id + '">' +
@@ -791,11 +791,21 @@ CARD_DATA.forEach(function(c){ cardById[c.id] = c; });
 
 var modalView = null, modalIdx = -1;
 function tcgImg(pid){ return 'https://tcgplayer-cdn.tcgplayer.com/product/' + pid + '_200w.jpg'; }
+function altAdjust(k, d, i){
+  var cur = altArt[k], cq = (cur && cur.q) || 0, nq = cq + d;
+  if (nq < 0) return;
+  var base = altBase(k);
+  owned[base] = (owned[base] || 0) + d;
+  if (owned[base] <= 0) delete owned[base];
+  if (nq > 0) altArt[k] = { q: nq, i: (cur && cur.i != null) ? cur.i : i }; else delete altArt[k];
+  var el = document.getElementById('qty-val'); if (el) el.textContent = nq;
+  saveOwned(); saveAltArt(); renderCollection();
+}
 function openModalAt(i){
   if (!modalView || i < 0 || i >= modalView.length) return;
   modalIdx = i;
   var c = modalView[i];
-  if (c.alt) openModal(c.base.id, { nav: true, img: tcgImg(c.pid), label: c.id + ' \u00B7 ' + c.label });
+  if (c.alt) openModal(c.base.id, { nav: true, img: tcgImg(c.pid), label: c.id + ' \u00B7 ' + c.label, altKey: c.id, altI: 6 + c.j });
   else openModal(c.id, { nav: true });
 }
 document.addEventListener('keydown', function(e){
@@ -809,7 +819,7 @@ function openModal(id, opts){
   if (!opts.nav) modalIdx = -1;
   var c = cardById[id];
   if (!c) return;
-  var qty = owned[id] || 0;
+  var qty = opts.altKey ? ((altArt[opts.altKey] && altArt[opts.altKey].q) || 0) : baseRegular(id);
   var html =
     '<div class="gcg-modal-back" id="modal-back">' +
       '<div class="gcg-modal">' +
@@ -823,7 +833,7 @@ function openModal(id, opts){
         (c.trait ? '<div class="trait-line">' + c.trait + (c.link ? ' &middot; Link: ' + c.link : '') + '</div>' : '') +
         '<div class="eff">' + (c.effect ? c.effect.replace(/</g,'&lt;').replace(/>/g,'&gt;') : (c.partial ? 'Stats loaded; effect text not loaded yet \u2014 check the official card database.' : 'No effect text.')) + '</div>' +
         '<div class="gcg-qty-row">' +
-          '<span class="lbl">OWNED</span>' +
+          '<span class="lbl">' + (opts.altKey ? 'OWNED (THIS ALT ART)' : 'OWNED (REGULAR COPIES)') + '</span>' +
           '<button id="qty-minus">&minus;</button>' +
           '<span class="val" id="qty-val">' + qty + '</span>' +
           '<button id="qty-plus">+</button>' +
@@ -843,14 +853,15 @@ function openModal(id, opts){
       if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) openModalAt(modalIdx + (dx < 0 ? 1 : -1));
     }, { passive: true });
   }
-  document.getElementById('qty-plus').addEventListener('click', function(){ setQty(id, (owned[id]||0) + 1); });
-  document.getElementById('qty-minus').addEventListener('click', function(){ setQty(id, Math.max(0, (owned[id]||0) - 1)); });
+  document.getElementById('qty-plus').addEventListener('click', function(){ if (opts.altKey) altAdjust(opts.altKey, 1, opts.altI); else setQty(id, baseRegular(id) + 1); });
+  document.getElementById('qty-minus').addEventListener('click', function(){ if (opts.altKey) altAdjust(opts.altKey, -1, opts.altI); else setQty(id, Math.max(0, baseRegular(id) - 1)); });
 }
 function closeModal(){ modalIdx = -1; document.getElementById('modal-root').innerHTML = ''; renderCards(); }
 function setQty(id, val){
-  if (val <= 0) delete owned[id]; else owned[id] = val;
+  var tot = val + altSum(id);
+  if (tot <= 0) delete owned[id]; else owned[id] = tot;
   document.getElementById('qty-val').textContent = val;
-  saveOwned();
+  saveOwned(); renderCollection();
 }
 
 // ---------- collection view ----------

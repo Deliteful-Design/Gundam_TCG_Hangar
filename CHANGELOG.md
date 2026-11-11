@@ -3,6 +3,7 @@
 Keep this file in the repo. Commit after every update so GitHub's history lets you go back to any earlier version.
 
 ## Latest
+- Alternate arts start at zero. In the Card Database, an original card's badge and counter now show only your regular copies, and an alternate printing has its own counter ("Owned (this alt art)") that starts at 0 and adds to your total. Alternate numbers added here follow TCGplayer's list order, which can differ from ExBurst's ALT numbers for older sets.
 - Card Database now lists alternate printings (from TCGplayer's list, including promos and Store Tournament packs) right after each original card, with a cyan border and an ID like GD04-003-ALT1. A checkbox turns them off.
 - In a card's popup you can move to the previous or next card with the PREV and NEXT buttons, the left and right arrow keys, or a swipe on a phone.
 - Alternate arts are now their own picture tiles in My Collection. Importing an ExBurst file saves each -ALT number with its copy count. Each tile has arrows to pick which picture it shows (Bandai art 1 to 6, then every TCGplayer printing including promo and Store Tournament packs); your pick is saved with your backup. Base tiles show only your regular copies; deck checks still use the total. Replaces the earlier ALT counter, so re-import your ExBurst file after updating.
