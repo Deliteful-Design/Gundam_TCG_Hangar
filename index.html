@@ -950,11 +950,21 @@ document.getElementById('coll-add').addEventListener('input', function(){
   if (q.length < 2){ box.style.display = 'none'; return; }
   var hits = CARD_DATA.filter(function(c){ return ((c.name || '') + ' ' + c.id).toLowerCase().indexOf(q) > -1; }).slice(0, 8);
   box.style.display = 'block';
-  box.innerHTML = hits.map(function(c){
-    return '<div class="gcg-coll-row"><img src="' + (c.img || cardImgUrl(c.id)) + '"><div class="nm">' + String(c.name).replace(/</g, '&lt;') + '<div class="tag">' + c.id + (owned[c.id] ? ' \u00B7 owned x' + owned[c.id] : '') + '</div></div><button class="gcg-btn small" data-add="' + c.id + '">+ ADD</button></div>';
+  var entries = [];
+  hits.forEach(function(c){
+    entries.push({ c: c });
+    (ALT_ART[c.id] || []).forEach(function(x, j){ entries.push({ c: c, alt: true, key: c.id + '-ALT' + (j + 1), label: x[0], pid: x[1], j: j }); });
+  });
+  box.innerHTML = entries.map(function(en){
+    var c = en.c, nm = String(c.name).replace(/</g, '&lt;');
+    if (!en.alt) return '<div class="gcg-coll-row"><img src="' + (c.img || cardImgUrl(c.id)) + '"><div class="nm">' + nm + '<div class="tag">' + c.id + (baseRegular(c.id) ? ' \u00B7 owned x' + baseRegular(c.id) : '') + '</div></div><button class="gcg-btn small" data-add="' + c.id + '">+ ADD</button></div>';
+    var have = (altArt[en.key] && altArt[en.key].q) || 0;
+    return '<div class="gcg-coll-row"><img src="' + tcgImg(en.pid) + '"><div class="nm">' + nm + '<div class="tag" style="color:var(--cyan);">' + en.key + ' \u00B7 ' + String(en.label).replace(/</g, '&lt;') + (have ? ' \u00B7 owned x' + have : '') + '</div></div><button class="gcg-btn small" data-addalt="' + en.key + '" data-i="' + (6 + en.j) + '">+ ADD ALT ART</button></div>';
   }).join('') || '<div class="tag" style="padding:10px;">No match. Add new sets under New Sets &amp; Backup.</div>';
 });
 document.getElementById('coll-add-results').addEventListener('click', function(e){
+  var ba = e.target.closest('[data-addalt]');
+  if (ba){ altAdjust(ba.dataset.addalt, 1, parseInt(ba.dataset.i, 10)); document.getElementById('coll-add').dispatchEvent(new Event('input')); return; }
   var b = e.target.closest('[data-add]'); if (!b) return;
   owned[b.dataset.add] = (owned[b.dataset.add] || 0) + 1;
   saveOwned(); renderCollection();

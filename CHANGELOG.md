@@ -3,6 +3,7 @@
 Keep this file in the repo. Commit after every update so GitHub's history lets you go back to any earlier version.
 
 ## Latest
+- My Collection's "Add a card" search now lists each card's alternate printings under it, with a cyan "+ ADD ALT ART" button, so you can add an alternate (for example GD06-003 LR+) without re-importing from ExBurst. The original card in the list shows only your regular copies.
 - Alternate arts start at zero. In the Card Database, an original card's badge and counter now show only your regular copies, and an alternate printing has its own counter ("Owned (this alt art)") that starts at 0 and adds to your total. Alternate numbers added here follow TCGplayer's list order, which can differ from ExBurst's ALT numbers for older sets.
 - Card Database now lists alternate printings (from TCGplayer's list, including promos and Store Tournament packs) right after each original card, with a cyan border and an ID like GD04-003-ALT1. A checkbox turns them off.
 - In a card's popup you can move to the previous or next card with the PREV and NEXT buttons, the left and right arrow keys, or a swipe on a phone.
